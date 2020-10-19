@@ -23,7 +23,7 @@ const orm = {
 
     updateOne: function(boolean, idCol, id) {
         let queryString = 'UPDATE burgers SET ?? WHERE ?? = ?';
-        connection.query(queryString, [{devoured: true}, idCol, id], (err, res) => {
+        connection.query(queryString, [{devoured: boolean}, idCol, id], (err, res) => {
             if(err) throw err;
             console.log(res);
         });
