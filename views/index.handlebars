@@ -1,1 +1,31 @@
-//Handlebars syntax to create HTML
+<h1>Burgers, burgers, burgers!</h1>
+
+<ul>
+    {{#each burgers}}
+    {{#unless devoured}}
+    <li>
+        <p>
+            {{this.id}}. {{this.burger}}
+
+            <button data-burgerid="{{this.id}}" class="eat">Bon Appetit!</button>
+        </p>
+    </li>
+    {{/unless}}
+    {{/each}}
+</ul>
+
+<ul>
+    {{#each burgers}}
+    {{#if devoured}}
+    <li>
+        <p>{{this.id}}. {{this.burger}}</p>
+    </li>
+    {{/if}}
+    {{/each}}
+</ul>
+
+<h2>Place your order:</h2>
+<form id="orderburger" class="button-size">
+  <textarea type="text" name="burger"></textarea>
+  <button type="submit">Complete order!</button>
+</form>
