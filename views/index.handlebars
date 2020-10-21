@@ -29,3 +29,47 @@
   <textarea type="text" name="burger"></textarea>
   <button type="submit">Complete order!</button>
 </form>
+
+<script>
+    //Crate a new burger
+    $('#orderburger').on('submit', (event) => {
+        event.preventDefault();
+        let newBurger = {
+            burger_name: $('orderburger [name=burger]').val().trim();
+        };
+
+        $.ajax('/api/burgers', {
+            type: 'POST',
+            data: newBurger
+        })
+        .then(() => {
+            console.log('New burger ordered!');
+            location.reload();
+        })
+        .catch((err) => {
+            throw(err);
+        });
+    });
+
+    //Change 'eaten' status
+    $('.eat').on('click', (event) => {
+        let id = $(this).data('burgerid');
+        let eatenStat = {
+            devoured: true;
+        };
+
+        $.ajax(`/api/burgers/${id}`, {
+            type: 'PUT',
+            data: eatenStat
+        })
+        .then(() => {
+            console.log('Changed burger status to devoured');
+            location.reload();
+        })
+        .catch((err) => {
+            throw(err);
+        });
+    });
+
+    //Delete from db
+</script>
