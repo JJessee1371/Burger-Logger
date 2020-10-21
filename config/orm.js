@@ -9,9 +9,9 @@ const orm = {
         });
     },
 
-    insertOne: function(name, cb) {
+    insertOne: function(burger_name, cb) {
        let queryString = 'INSERT INTO burgers SET ??';
-       connection.query(queryString, {burger_name: name}, (err, res) => {
+       connection.query(queryString, {burger_name}, (err, res) => {
             if(err) throw err;
             cb(res);
         });
