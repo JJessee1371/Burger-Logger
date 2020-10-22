@@ -9,9 +9,9 @@ const orm = {
         });
     },
 
-    insertOne: function(tableName, colName, colValue, cb) {
+    insertOne: function(tableName, colName, newVal, cb) {
        let queryString = 'INSERT INTO ?? (?) VALUES (?)';
-       connection.query(queryString, [tableName, colName, colValue], (err, res) => {
+       connection.query(queryString, [tableName, colName, newVal], (err, res) => {
             if(err) throw err;
             cb(res);
         });

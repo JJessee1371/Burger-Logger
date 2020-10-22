@@ -4,6 +4,9 @@ const mysql = require('mysql');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//Serve static content from the public directory
+app.use(express.static('public'));
+
 //Import server routes
 const routes = require('./controllers/burger_controller');
 app.use(routes);

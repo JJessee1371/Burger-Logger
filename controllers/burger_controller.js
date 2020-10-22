@@ -17,7 +17,8 @@ router.get('/', (req, res) => {
 
 //POST to add a new burger to the list
 router.post('/api/burgers', (req, res) => {
-    burger.create(['burger_name'], [req.body.burger_name], (result) => {
+    console.log(req);
+    burger.create([req.body.burger_name], (result) => {
         console.log(result);
     });
 });
