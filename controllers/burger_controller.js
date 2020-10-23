@@ -25,10 +25,12 @@ router.post('/api/burgers', (req, res) => {
 
 //PUT to update the devoured status of the burger
 router.put('/api/burgers/:id', (req, res) => {
-    let status = 'id =' + req.params.id;
+    let status = 'id = ' + req.params.id;
     console.log('status' + status);
 
-    burger.update({devoured: req.body.devoured}, status, (result) => {
+    burger.update({
+        devoured: req.body.devoured}, 
+        status, (result) => {
         if(result.changedRows == 0) {
             return res.status(404).end();
         } else {

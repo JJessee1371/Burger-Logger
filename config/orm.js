@@ -1,25 +1,67 @@
 const connection = require('./connection');
 
+//Helper functions to convert given items to SQL syntax
+function printQuestionMarks(num) {
+    let arr = [];
+  
+    for(i = 0; i < num; i++) {
+      arr.push("?");
+    };
+  
+    return arr.toString();
+};
+
+function objToSql(ob) {
+    let arr = [];
+
+    for (let key in ob) {
+      let value = ob[key];
+      if (Object.hasOwnProperty.call(ob, key)) {
+        if (typeof value === "string" && value.indexOf(" ") >= 0) {
+          value = "'" + value + "'";
+        }
+        arr.push(key + "=" + value);
+      }
+    }
+  
+    return arr.toString();
+};
+
+
 const orm = {
-    selectAll: function(tableName, cb) {
-        let queryString = 'SELECT * FROM ??';
-        connection.query(queryString, [tableName], (err, res) => {
+    selectAll: function(table, cb) {
+        let queryString = 'SELECT * FROM ' + table +';';
+        connection.query(queryString, (err, res) => {
             if(err) throw err;
             cb(res);
         });
     },
 
-    insertOne: function(tableName, colName, newVal, cb) {
-       let queryString = 'INSERT INTO ?? (?) VALUES (?)';
-       connection.query(queryString, [tableName, colName, newVal], (err, res) => {
+    insertOne: function(table, cols, newVals, cb) {
+       let queryString = 'INSERT INTO ' + table;
+
+       queryString += ' (';
+       queryString += cols.toString();
+       queryString += ') ';
+       queryString += 'VALUES (';
+       queryString += printQuestionMarks(newVals.length);
+       queryString += ') ';
+
+       connection.query(queryString, newVals, (err, res) => {
             if(err) throw err;
             cb(res);
         });
     },
 
-    updateOne: function(tableName, newColVal, colId, itemId, cb) {
-        let queryString = 'UPDATE ?? SET ?? WHERE ?? = ?';
-        connection.query(queryString, [tableName, newColVal, colId, itemId], (err, res) => {
+    updateOne: function(tableName, newColVal, condition, cb) {
+        let queryString = 'UPDATE ' + table;
+
+        queryString += ' SET';
+        queryString += objToSql(newColVal);
+        queryString += ' WHERE ';
+        queryString += condition;
+
+        connection.query(queryString, (err, res) => {
             if(err) throw err;
             cb(res);
         });

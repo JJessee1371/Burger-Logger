@@ -32,6 +32,9 @@ $(function () {
             console.log('Changed burger status to devoured');
             location.reload();
         })
+        .catch((err) => {
+            console.log(err);
+        });
     });
 
 
