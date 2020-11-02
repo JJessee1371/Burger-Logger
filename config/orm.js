@@ -30,7 +30,7 @@ function objToSql(ob) {
 
 const orm = {
     selectAll: function(table, cb) {
-        let queryString = 'SELECT * FROM ' + table +';';
+        let queryString = 'SELECT * FROM ' + table + ';';
         connection.query(queryString, (err, res) => {
             if(err) throw err;
             cb(res);
@@ -40,12 +40,8 @@ const orm = {
     insertOne: function(table, cols, newVals, cb) {
        let queryString = 'INSERT INTO ' + table;
 
-       queryString += ' (';
-       queryString += cols.toString();
-       queryString += ') ';
-       queryString += 'VALUES (';
-       queryString += printQuestionMarks(newVals.length);
-       queryString += ') ';
+       queryString += '(' + cols.toString() + ') ';
+       queryString += 'VALUES (' + printQuestionMarks(newVals.length) + ')';
 
        connection.query(queryString, newVals, (err, res) => {
             if(err) throw err;
@@ -53,13 +49,11 @@ const orm = {
         });
     },
 
-    updateOne: function(tableName, newColVal, condition, cb) {
+    updateOne: function(table, newColVal, condition, cb) {
         let queryString = 'UPDATE ' + table;
 
-        queryString += ' SET';
-        queryString += objToSql(newColVal);
-        queryString += ' WHERE ';
-        queryString += condition;
+        queryString += ' SET ' + objToSql(newColVal);
+        queryString += ' WHERE ' + condition;
 
         connection.query(queryString, (err, res) => {
             if(err) throw err;
