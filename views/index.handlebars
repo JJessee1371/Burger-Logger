@@ -6,11 +6,12 @@
     <h2>Mr. Squidward will take your order here:</h2>
     <form id="neworder" class="button-size">
     <textarea type="text" name="burger"></textarea>
-    <button type="submit">Complete order!</button>
+    <button type="submit">Place order!</button>
     </form>
 </section>
 
-<section class=" container waiting">
+<div class="flex-container">
+    <section class=" container waiting">
     <h3>Waiting orders</h3>
     <ul>
         {{#each burgers}}
@@ -25,20 +26,22 @@
         {{/unless}}
         {{/each}}
     </ul>
-</section>
+    </section>
 
-<section class="container eaten">
-    <h3>Eaten burgers</h3>
-    <ul>
-        {{#each burgers}}
-        {{#if devoured}}
-        <li>
-            <p>{{this.id}}. {{this.burger_name}}</p>
-        </li>
-        {{/if}}
-        {{/each}}
-    </ul>
-</section>
+    <section class="container eaten">
+        <h3>Eaten burgers</h3>
+        <ul>
+            {{#each burgers}}
+            {{#if devoured}}
+            <li>
+                <p>{{this.id}}. {{this.burger_name}}</p>
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </section>
+</div>
+
 
 
 

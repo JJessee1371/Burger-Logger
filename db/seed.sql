@@ -1,4 +1,5 @@
 INSERT INTO burgers (burger_name) VALUES
-('BBQ Western'),
-('Cheeseburger'),
-('Big Kahuna');
+('Krabby Patty'),
+('Krabby Double Deluxe'),
+('Triple Krabby Supreme'),
+('Pipsqueak Patty');
