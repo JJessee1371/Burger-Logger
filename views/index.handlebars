@@ -1,34 +1,47 @@
-<h1>Burgers, burgers, burgers!</h1>
+<h1>Ahoy! Welcome to the Krusty Krab!</h1>
 
-<ul>
-    {{#each burgers}}
-    {{#unless devoured}}
-    <li>
-        <p>
-            {{this.id}}. {{this.burger_name}}
+<img id="bg" src="/assets/img/krusty_krab.png" alt="Krusty Krab">
 
-            <button data-burgerid="{{this.id}}" class="eat">Bon Appetit!</button>
-        </p>
-    </li>
-    {{/unless}}
-    {{/each}}
-</ul>
+<section class="container order">
+    <h2>Mr. Squidward will take your order here:</h2>
+    <form id="neworder" class="button-size">
+    <textarea type="text" name="burger"></textarea>
+    <button type="submit">Complete order!</button>
+    </form>
+</section>
 
-<ul>
-    {{#each burgers}}
-    {{#if devoured}}
-    <li>
-        <p>{{this.id}}. {{this.burger_name}}</p>
-    </li>
-    {{/if}}
-    {{/each}}
-</ul>
+<section class=" container waiting">
+    <h3>Waiting orders</h3>
+    <ul>
+        {{#each burgers}}
+        {{#unless devoured}}
+        <li>
+            <p>
+                {{this.id}}. {{this.burger_name}}
 
-<h2>Place your order:</h2>
-<form id="neworder" class="button-size">
-  <textarea type="text" name="burger"></textarea>
-  <button type="submit">Complete order!</button>
-</form>
+                <button data-burgerid="{{this.id}}" class="eat">Bon Appetit!</button>
+            </p>
+        </li>
+        {{/unless}}
+        {{/each}}
+    </ul>
+</section>
+
+<section class="container eaten">
+    <h3>Eaten burgers</h3>
+    <ul>
+        {{#each burgers}}
+        {{#if devoured}}
+        <li>
+            <p>{{this.id}}. {{this.burger_name}}</p>
+        </li>
+        {{/if}}
+        {{/each}}
+    </ul>
+</section>
+
+
+
 
 <script>
 //Create a new burger
@@ -53,6 +66,7 @@ $('#neworder').on('submit', (event) => {
 
 //Change 'eaten' status
 $('.eat').on('click', (event) => {
+    event.preventDefault();
     let id = event.currentTarget.getAttribute('data-burgerid');
     let eatenStat = {
         devoured: true
