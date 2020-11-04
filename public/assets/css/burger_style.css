@@ -1,10 +1,10 @@
-#bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1;
+body {
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/krusty-krab.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 h1 {
@@ -56,8 +56,6 @@ button {
 
 button:hover {
     opacity: 1;
-    width: 125px;
-    height: 30px;
 }
 
 h3 {
@@ -70,16 +68,48 @@ h3 {
     justify-content: space-around;
 }
 
-.waiting {
-    width: 20%;
+.waiting, .eaten{
+    width: 30%;
     display: inline-block;
     margin: auto;
+    padding: 15px;
 }
 
-.eaten {
-    width: 20%;
-    display: inline-block;
-    margin: auto;
+/* Background and element sizing for responsive design */
+@media screen and (max-width: 768px) and (min-width:640px) {
+    body {
+        background-image: url('../img/krust-krab2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .waiting, .eaten {
+        width: 35%;
+    }
 }
 
-/* font-family: 'Chewy', cursive;*/
+@media screen and (max-width: 640px) and (min-width: 320px) {
+    body {
+        background-image: url('../img/bg2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        width: 85%;
+    }
+
+    .flex-container {
+        display: block;
+    }
+
+    .waiting {
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+}
