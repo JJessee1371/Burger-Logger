@@ -10,14 +10,11 @@ already been eaten.
 ## Screenshot
 ![burger_db](https://user-images.githubusercontent.com/66571617/98155235-2386e180-1e93-11eb-9209-e5a19c3d65d3.PNG)
 
-## Languages
+## Technologies
 * HTML
 * CSS
-* JavaScript
+* JavaScript/jQuery
 * MySQL
-
-## Additional Technologies
-* jQuery
 * Dotenv
 * Nodemon
 * Express-Handlebars
